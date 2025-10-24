@@ -1,0 +1,15 @@
+export function getWeight(hog) {
+  if (hog.weight != null) return hog.weight;
+  const key = Object.keys(hog).find(k => k.toLowerCase().includes("weight"));
+  return key ? hog[key] : 0;
+}
+export function getImageSrc(hog) {
+  if (hog.image) return hog.image;
+  const slug = hog.name?.toLowerCase().replace(/\s+/g, "_") || "hog";
+  try {
+    return new URL(`../assets/${slug}.jpg`, import.meta.url).href;
+  } catch {
+    return "https://via.placeholder.com/300x200?text=Hog";
+  }
+}
+ 
